@@ -225,10 +225,36 @@
         <div class="projects-scroll-wrapper">
             <div class="projects-track" id="projectsTrack">
                 <!-- Карточка проекта 1 -->
-                <div class="project-card" data-project='{"title":"Автоматизация проверки паспортных данных","desc":"Разработала прототип приложения на C# для автоматизации верификации паспортов с интеграцией через API. Провела анализ бизнес-процессов, рассчитала экономическую эффективность — потенциальная экономия для ВТБ Лизинг.","tech":"C#, API, BPMN, Excel","link":"#", "image":"media/projects/vtb.jpg"}'></div>
-                <!-- Проект 2 -->
-                <div class="project-card" data-project='{"title":"Унификация учебных материалов","desc":"Провела проблемные интервью с преподавателями и студентами, выявила ключевые барьеры. Разработала прототип интерфейса на HTML/CSS, построила HADI-таблицы и таблицы стейкхолдеров.","tech":"HTML/CSS, Miro, проблемные интервью","link":"#","image":"media/projects/lingv=.jpg"}'></div>
-                <!-- Проект 3 -->
+<div class="project-card" data-project='{
+    "title": "Автоматизация проверки паспортных данных",
+    "desc": "Разработала прототип приложения на C# для автоматизации верификации паспортов с интеграцией через API. Провела анализ бизнес-процессов заказчика и участвовала в описании функциональных требований к системе. Рассчитала предварительную экономическую эффективность внедрения, показав потенциальную ежемесячную экономию для компании.",
+    "tech": "C# | REST API | BPMN | Excel | Экономический анализ",
+    "features": [
+        "Гибридный ввод данных (ручной + API)",
+        "Интеграция с внешними сервисами проверки",
+        "Автоматическое логирование результатов",
+        "Расчёт экономии (времени и ресурсов)"
+    ],
+    "image": "media/projects/photo_2026-05-03_01-41-02.jpg",
+    "video": "media/video/Коалиция ЭПИ-211 демонстрация прототипа Паспортный контроль.mp4"
+}'></div>                <!-- Проект 2 -->
+<div class="project-card" data-project='{
+    "title": "Унификация распространения учебных материалов",
+    "desc": "Провела серию проблемных интервью с преподавателями и студентами кафедры Лингвистики, выявив ключевые барьеры в передаче учебных материалов. На основе полученных данных разработала прототип интерфейса, ориентированный на простоту и удобство пользователей. Построила таблицы стейкхолдеров и HADI-таблицы для обоснования выбранного решения — модификации сайта университета.",
+    "tech": "HTML/CSS | Miro | проблемные интервью | HADI | BPMN",
+    "features": [
+        "Проведено 12 проблемных интервью со студентами и преподавателями",
+        "Выявлено 5 ключевых барьеров в передаче материалов",
+        "Разработан интерактивный прототип интерфейса на HTML/CSS",
+        "Построены HADI-таблицы для проверки гипотез",
+        "Создана таблица стейкхолдеров с анализом интересов и влияния"
+    ],
+    "image": "media/video/Рисунок1.png",
+    "videos": [
+    "media/projects/Мультимедиа1.mp4",
+    "media/projects/Мультимедиа2.mp4"
+]
+}'></div>                <!-- Проект 3 -->
                 <div class="project-card" data-project='{"title":"Telegram-бот для учёбы","desc":"Спроектировала и разработала бота для помощи студентам: сохранение материалов, привязка ДЗ к датам, расписание, заметки. Работа с JSON для хранения данных.","tech":"Python, JSON, Telegram API","link":"https://github.com/madebystasy","image":"media/projects/water.jpg"}'></div>
                 <!-- Проект 4 -->
                 <div class="project-card" data-project='{"title":"Автоматический Excel-отчёт","desc":"Создала скрипт для автоматической генерации Excel-отчёта по продажам. Считает метрики: выручка, средний чек, топ продуктов.","tech":"Python, Pandas, Excel, Power BI","link":"https://github.com/madebystasy","image":"media/projects/excel.jpg"}'></div>
@@ -263,9 +289,11 @@
         <div class="modal-body project-modal-body">
             <div id="projectMediaContainer"></div>
             <h2 id="projectModalTitle"></h2>
-            <p id="projectModalDesc"></p>
+            <div id="projectModalFullDesc"></div>
+            <div id="projectModalFeatures"></div>
             <div class="tech-badge" id="projectModalTech"></div>
-            <a href="#" id="projectModalLink" class="project-link" target="_blank">Посмотреть на GitHub →</a>
+            <div id="projectModalButtons" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;"></div>
+            <a href="#" id="projectModalLink" class="project-link" target="_blank" style="display: none;">Посмотреть на GitHub →</a>
         </div>
     </div>
 </div>

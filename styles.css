@@ -616,3 +616,23 @@ nav .right a:nth-last-child(2) {
     padding: 2px 4px;
     border-radius: 6px;
 }
+
+.prototype-link {
+    background: #2a7f6e !important;
+    color: white !important;
+}
+
+.prototype-link:hover {
+    background: #1e5f52 !important;
+    transform: translateY(-2px);
+}
+
+.github-link {
+    background: #24292e !important;
+    color: white !important;
+}
+
+.github-link:hover {
+    background: #1a1e22 !important;
+    transform: translateY(-2px);
+}

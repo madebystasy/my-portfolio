@@ -66,10 +66,13 @@ document.querySelectorAll('.certificate-card').forEach(card => {
 });
 
 // ========== МОДАЛЬНОЕ ОКНО ДЛЯ ПРОЕКТОВ ==========
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ПРОЕКТОВ ==========
 const projectModal = document.getElementById('projectModal');
 const projectModalTitle = document.getElementById('projectModalTitle');
-const projectModalDesc = document.getElementById('projectModalDesc');
+const projectModalFullDesc = document.getElementById('projectModalFullDesc');
+const projectModalFeatures = document.getElementById('projectModalFeatures');
 const projectModalTech = document.getElementById('projectModalTech');
+const projectModalButtons = document.getElementById('projectModalButtons');
 const projectModalLink = document.getElementById('projectModalLink');
 
 document.querySelectorAll('.project-card').forEach(card => {
@@ -79,29 +82,86 @@ document.querySelectorAll('.project-card').forEach(card => {
             try {
                 const data = JSON.parse(dataAttr);
                 
-                // Поддержка фото и видео
+                // Медиа контейнер - ТОЛЬКО ФОТО (ШАПКА)
                 const mediaContainer = document.getElementById('projectMediaContainer');
                 mediaContainer.innerHTML = '';
                 
-                if (data.video) {
-                    // Если есть видео
-                    mediaContainer.innerHTML = `
-                        <video controls style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
-                            <source src="${data.video}" type="video/mp4">
-                            Ваш браузер не поддерживает видео
-                        </video>
-                    `;
-                } else if (data.image) {
-                    // Если есть фото
+                // Только картинка-шапка, без видео
+                if (data.image) {
                     mediaContainer.innerHTML = `
                         <img src="${data.image}" alt="${data.title}" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
                     `;
                 }
                 
-                document.getElementById('projectModalTitle').textContent = data.title;
-                document.getElementById('projectModalDesc').textContent = data.desc;
-                document.getElementById('projectModalTech').textContent = data.tech;
-                document.getElementById('projectModalLink').href = data.link;
+                // Заголовок
+                projectModalTitle.textContent = data.title;
+                
+                // Полное описание
+                projectModalFullDesc.innerHTML = `<p style="margin-bottom: 15px; line-height: 1.6;">${data.desc}</p>`;
+                
+                // Features (буллет-поинты) - идут после описания
+                if (data.features && data.features.length > 0) {
+                    let featuresHtml = `<h4 style="margin: 10px 0 10px 0; color: #475285;">Ключевые особенности:</h4><ul style="margin-left: 20px; margin-bottom: 20px;">`;
+                    data.features.forEach(f => {
+                        featuresHtml += `<li style="margin-bottom: 8px;">${f}</li>`;
+                    });
+                    featuresHtml += `</ul>`;
+                    projectModalFeatures.innerHTML = featuresHtml;
+                } else {
+                    projectModalFeatures.innerHTML = '';
+                }
+                
+                // ВИДЕО - идут после features (в самом конце)
+                let videosHtml = '';
+                if (data.videos && data.videos.length > 0) {
+                    videosHtml = `<div style="margin-top: 20px; margin-bottom: 20px;">`;
+                    data.videos.forEach((videoSrc, index) => {
+                        videosHtml += `
+                            <div style="margin-bottom: 20px;">
+                                <p style="margin-bottom: 8px; font-size: 14px; color: #475285; font-weight: 500;">📹 Демонстрация ${index + 1}</p>
+                                <video controls style="width: 100%; border-radius: 12px;">
+                                    <source src="${videoSrc}" type="video/mp4">
+                                    Ваш браузер не поддерживает видео
+                                </video>
+                            </div>
+                        `;
+                    });
+                    videosHtml += `</div>`;
+                } else if (data.video) {
+                    videosHtml = `
+                        <div style="margin-top: 20px; margin-bottom: 20px;">
+                            <p style="margin-bottom: 8px; font-size: 14px; color: #475285; font-weight: 500;">📹 Демонстрация</p>
+                            <video controls style="width: 100%; border-radius: 12px;">
+                                <source src="${data.video}" type="video/mp4">
+                                Ваш браузер не поддерживает видео
+                            </video>
+                        </div>
+                    `;
+                }
+                
+                // Создаём или находим контейнер для видео
+                let videoContainer = document.getElementById('projectVideoContainer');
+                if (!videoContainer) {
+                    videoContainer = document.createElement('div');
+                    videoContainer.id = 'projectVideoContainer';
+                    // Вставляем после features
+                    projectModalFeatures.insertAdjacentElement('afterend', videoContainer);
+                }
+                videoContainer.innerHTML = videosHtml;
+                
+                // Технологии
+                projectModalTech.textContent = data.tech;
+                
+                // Кнопки (прототип и GitHub)
+                projectModalButtons.innerHTML = '';
+                if (data.prototype && data.prototype !== '#') {
+                    projectModalButtons.innerHTML += `<a href="${data.prototype}" class="project-link prototype-link" target="_blank" style="background: #2a7f6e;">🔗 Смотреть прототип</a>`;
+                }
+                if (data.github && data.github !== '#') {
+                    projectModalButtons.innerHTML += `<a href="${data.github}" class="project-link github-link" target="_blank" style="background: #24292e;">💻 GitHub</a>`;
+                }
+                
+                projectModalLink.href = data.link || '#';
                 projectModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             } catch(e) {
@@ -110,7 +170,6 @@ document.querySelectorAll('.project-card').forEach(card => {
         }
     });
 });
-
 // ========== ЗАКРЫТИЕ МОДАЛЬНЫХ ОКОН ==========
 closeBtns.forEach(btn => {
     btn.addEventListener('click', function() {
