@@ -10,83 +10,89 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .creative-hero {
-            text-align: center;
-            padding: 60px 50px 30px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-        .creative-hero h1 {
-            font-size: 42px;
-            color: #475285;
-            margin-bottom: 15px;
-        }
-        .creative-hero p {
-            font-size: 18px;
-            color: #555;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .gallery {
-            padding: 40px 50px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        .gallery-item {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-        .gallery-item img, .gallery-item video {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: contain;
-    background: #ffffff;
-    pointer-events: none;
-}
-        /* Видео в превью без звука и без кнопок */
-        .gallery-item video {
-            pointer-events: none;
-        }
-        .gallery-info {
-            padding: 18px;
-        }
-        .gallery-info h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-            color: #475285;
-        }
-        .gallery-info p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-        }
-        .back-link {
-            display: inline-block;
-            margin: 30px 50px;
-            padding: 10px 20px;
-            background: #475285;
-            color: white;
-            border-radius: 8px;
-            transition: 0.2s;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            background: #2a3666;
-        }
-        @media (max-width: 700px) {
-            .gallery { padding: 20px; }
-            .creative-hero { padding: 40px 20px; }
-            .back-link { margin: 20px; }
-        }
-    </style>
+    .creative-hero {
+        text-align: center;
+        padding: 60px 50px 30px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    .creative-hero h1 {
+        font-size: 42px;
+        color: #475285;
+        margin-bottom: 15px;
+    }
+    .creative-hero p {
+        font-size: 18px;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    .gallery {
+        padding: 40px 50px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+    }
+    .gallery-item {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        cursor: pointer;
+    }
+    .gallery-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Базовые стили для всех видео и картинок */
+    .gallery-item img, 
+    .gallery-item video {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: contain;
+        background: #ffffff;
+        pointer-events: none;
+    }
+    
+    /* Для карточек с классом cover-video — растягиваем на весь блок */
+    .gallery-item.cover-video video,
+    .gallery-item.cover-video img {
+        object-fit: cover;
+    }
+    
+    .gallery-info {
+        padding: 18px;
+    }
+    .gallery-info h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: #475285;
+    }
+    .gallery-info p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+    }
+    .back-link {
+        display: inline-block;
+        margin: 30px 50px;
+        padding: 10px 20px;
+        background: #475285;
+        color: white;
+        border-radius: 8px;
+        transition: 0.2s;
+        text-decoration: none;
+    }
+    .back-link:hover {
+        background: #2a3666;
+    }
+    @media (max-width: 700px) {
+        .gallery { padding: 20px; }
+        .creative-hero { padding: 40px 20px; }
+        .back-link { margin: 20px; }
+    }
+</style>
 </head>
 <body>
 
@@ -124,41 +130,127 @@
 
             <!-- ========== ШАБЛОН КАРТОЧКИ С ВИДЕО ========== -->
             <!-- data-type="video" - открывает видео в модалке -->
-            <div class="gallery-item" data-type="video" data-src="media/video/2_5273886434061730979.mp4">
-                <video muted autoplay loop playsinline>
-                    <source src="media/video/2_5273886434061730979.mp4" type="video/mp4">
-                </video>
-                <div class="gallery-info">
-                    <h3>Название видео</h3>
-                    <p>Описание: какой проект, какие программы использовались</p>
-                </div>
-            </div>
-
+            
             <!-- ========== ШАБЛОН КАРТОЧКИ С ИЗОБРАЖЕНИЕМ ========== -->
             <!-- data-type="image" - открывает картинку в модалке -->
             <div class="gallery-item" data-type="image" data-src="media/video/dm.png">
                 <img src="media/video/dm.png" alt="Название работы">
                 <div class="gallery-info">
-                    <h3>Название дизайна</h3>
-                    <p>Canva / Figma / Photoshop, 2024</p>
+                    <h3>Слайд с командой</h3>
+                    <p>Power Point</p>
                 </div>
             </div>
-
+            <div class="gallery-item " data-type="image" data-src="media/video/Anastasia  Nechaeva Colgate product.png">
+                <img src="media/video/Anastasia  Nechaeva Colgate product.png" alt="Название работы">
+                <div class="gallery-info">
+                    <h3>Colgate постер кампании</h3>
+                    <p>Canva</p>
+                </div>
+            </div>
             <!-- ========== ШАБЛОН КАРТОЧКИ С ВИДЕО ========== -->
             <!-- data-type="video" - открывает видео в модалке -->
-            <div class="gallery-item" data-type="image" data-src="media/video/image_2026-05-03_00-51-27.png">
+            <div class="gallery-item " data-type="image" data-src="media/video/image_2026-05-03_00-51-27.png">
                 <video muted autoplay loop playsinline>
                     <source src="media/video/авиа.mp4" type="video/mp4">
                 </video>
                 <div class="gallery-info">
-                    <h3>Название видео</h3>
-                    <p>Описание: какой проект, какие программы использовались</p>
+                    <h3>Информационный слайд с диаграммой</h3>
+                    <p>Power Point</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-type="image" data-src="media/video/photo_2024-12-16_01-37-47.jpg">
+                <img src="media/video/photo_2024-12-16_01-37-47.jpg" alt="Название работы">
+                <div class="gallery-info">
+                    <h3>Дизайн постера</h3>
+                    <p>Canva</p>
                 </div>
             </div>
 
+            <div class="gallery-item cover-video" data-type="video" data-src="media/video/2_5273886434061730979.mp4">
+                <video muted autoplay loop playsinline>
+                    <source src="media/video/2_5273886434061730979.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <h3>Монтаж (фан-видео)</h3>
+                    <p>Adobe After Effects</p>
+                </div>
+            </div>
+
+            <div class="gallery-item cover-video" data-type="video" data-src="media/video/caraval.mp4">
+                <video muted autoplay loop playsinline>
+                    <source src="media/video/caraval.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <h3>Монтаж (фан-видео)</h3>                    
+                    <p>Adobe After Effects</p>
+                </div>
+            </div>
+
+
+            
+
+            <div class="gallery-item" data-type="video" data-src="media/video/chef.mp4">
+                <video muted autoplay loop playsinline>
+                    <source src="media/video/chef.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <h3>Монтаж (фан-видео)</h3>                    
+                    <p>Adobe After Effects</p>
+                </div>
+            </div>
+
+            <div class="gallery-item cover-video" data-type="video" data-src="media/video/bday.mp4">
+                <video muted autoplay loop playsinline>
+                    <source src="media/video/bday.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <h3>Монтаж (фан-видео)</h3>                    
+                    <p>Adobe After Effects</p>
+                </div>
+            </div>
+
+            <div class="gallery-item cover-video" data-type="video" data-src="media/video/naturl.mp4">
+                <video muted autoplay loop playsinline>
+                    <source src="media/video/naturl.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <h3>Монтаж (фан-видео)</h3>                    
+                    <p>Adobe After Effects</p>
+                </div>
+            </div>
+
+            <div class="gallery-item cover-video" data-type="video" data-src="media/video/wed.mp4">
+                <video muted autoplay loop playsinline>
+                    <source src="media/video/wed.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <h3>Монтаж (фан-видео)</h3>                    
+                    <p>Adobe After Effects</p>
+                </div>
+            </div>
+
+            <div class="gallery-item cover-video" data-type="video" data-src="media/video/emma.mp4">
+                <video muted autoplay loop playsinline>
+                    <source src="media/video/emma.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <h3>Монтаж (фан-видео)</h3>                    
+                    <p>Adobe After Effects</p>
+                </div>
+            </div>
+
+            <div class="gallery-item cover-video" data-type="video" data-src="media/video/dead.mp4">
+                <video muted autoplay loop playsinline>
+                    <source src="media/video/dead.mp4" type="video/mp4">
+                </video>
+                <div class="gallery-info">
+                    <h3>Монтаж (фан-видео)</h3>                    
+                    <p>Adobe After Effects</p>
+                </div>
+            </div>
             <!-- ========== ШАБЛОН КАРТОЧКИ С ПРЕЗЕНТАЦИЕЙ (PDF) ========== -->
             <!-- data-type="pdf" - открывает PDF в новом окне или в модалке -->
-            <div class="gallery-item" data-type="pdf" data-src="media/presentations/твоя_презентация.pdf">
+            <!--<div class="gallery-item" data-type="pdf" data-src="media/presentations/твоя_презентация.pdf">
                 <img src="media/creative/preview_pdf.jpg" alt="Превью презентации">
                 <div class="gallery-info">
                     <h3>Название презентации</h3>
@@ -166,14 +258,16 @@
                 </div>
             </div>
 
-            <!-- ========== ШАБЛОН КАРТОЧКИ С IFARAME (Google Slides, Figma, YouTube) ========== -->
+             ========== ШАБЛОН КАРТОЧКИ С IFARAME (Google Slides, Figma, YouTube) ========== 
             <div class="gallery-item" data-type="iframe" data-src="https://docs.google.com/presentation/d/твой_айди/embed">
                 <img src="media/creative/preview_slides.jpg" alt="Превью презентации Google Slides">
                 <div class="gallery-info">
                     <h3>Интерактивная презентация</h3>
                     <p>Google Slides / Figma / Miro</p>
                 </div>
-            </div>
+            </div>-->
+
+            
 
         </div>
 

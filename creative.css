@@ -136,3 +136,23 @@ transform:translateY(0);
     background: #1a1a2e;
     pointer-events: none;
 }
+
+/* Обычное поведение — contain (с полями) */
+.gallery-item video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #1a1a2e;
+    pointer-events: none;
+}
+
+/* Для карточек с классом cover-video — растягиваем cover */
+.gallery-item.cover-video video {
+    object-fit: cover;
+}
+
+/* Если нужно, чтобы и картинки так же растягивались */
+.gallery-item.cover-video img {
+    object-fit: cover;
+}
